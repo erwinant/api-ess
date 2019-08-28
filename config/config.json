@@ -5,7 +5,9 @@
     "database": "ess_app",
     "host": "asgard",
     "dialect": "mssql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "timestamp":false,
+    "freezeTableName": true
   },
   "test": {
     "username": "root",
@@ -13,7 +15,9 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "timestamp":false,
+    "freezeTableName": true
   },
   "production": {
     "username": "root",
@@ -21,6 +25,8 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "timestamp":false,
+    "freezeTableName": true
   }
 }

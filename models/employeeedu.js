@@ -1,28 +1,28 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Account = sequelize.define('Account', {
+  const EmployeeEdu = sequelize.define('EmployeeEdu', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
     RowStatus: DataTypes.NUMBER,
-    Username: DataTypes.STRING,
-    PasswordSalt: DataTypes.STRING,
-    PasswordHash: DataTypes.STRING,
-    Email: DataTypes.STRING,
-    Role: DataTypes.STRING,
+    Degree: DataTypes.STRING,
+    Institution: DataTypes.STRING,
+    Major: DataTypes.STRING,
+    Course: DataTypes.STRING,
+    StartDate: DataTypes.DATE,
+    EndDate: DataTypes.DATE,
+    EmployeeID: DataTypes.NUMBER,
     CreateDate: DataTypes.DATE,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.DATE,
-    UpdateBy: DataTypes.STRING,
-    Locked: DataTypes.NUMBER,
-    LastLogin: DataTypes.DATE
+    UpdateBy: DataTypes.STRING
   }, {
       freezeTableName: true,
       timestamps: false,
     });
-  Account.associate = function (models) {
+  EmployeeEdu.associate = function (models) {
     // associations can be defined here
   };
-  return Account;
+  return EmployeeEdu;
 };

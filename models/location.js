@@ -1,28 +1,25 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Account = sequelize.define('Account', {
+  const Location = sequelize.define('Location', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
     RowStatus: DataTypes.NUMBER,
-    Username: DataTypes.STRING,
-    PasswordSalt: DataTypes.STRING,
-    PasswordHash: DataTypes.STRING,
-    Email: DataTypes.STRING,
-    Role: DataTypes.STRING,
+    LocationName: DataTypes.STRING,
+    LocationAddress: DataTypes.STRING,
+    Long: DataTypes.NUMBER,
+    Lat: DataTypes.NUMBER,
     CreateDate: DataTypes.DATE,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.DATE,
-    UpdateBy: DataTypes.STRING,
-    Locked: DataTypes.NUMBER,
-    LastLogin: DataTypes.DATE
+    UpdateBy: DataTypes.STRING
   }, {
       freezeTableName: true,
       timestamps: false,
     });
-  Account.associate = function (models) {
+  Location.associate = function (models) {
     // associations can be defined here
   };
-  return Account;
+  return Location;
 };

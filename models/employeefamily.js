@@ -1,15 +1,18 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Area = sequelize.define('Area', {
+  const EmployeeFamily = sequelize.define('EmployeeFamily', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true
     },
     RowStatus: DataTypes.NUMBER,
-    AreaCode: DataTypes.STRING,
-    ParentAreaCode: DataTypes.STRING,
-    Description: DataTypes.STRING,
-    Levels: DataTypes.NUMBER,
+    FullName: DataTypes.STRING,
+    Relation: DataTypes.STRING,
+    BirthPlace: DataTypes.STRING,
+    BirthDate: DataTypes.DATE,
+    BloodType: DataTypes.STRING,
+    Gender: DataTypes.STRING,
+    EmployeeID: DataTypes.NUMBER,
     CreateDate: DataTypes.DATE,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.DATE,
@@ -18,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       freezeTableName: true,
       timestamps: false,
     });
-  Area.associate = function (models) {
+  EmployeeFamily.associate = function (models) {
     // associations can be defined here
   };
-  return Area;
+  return EmployeeFamily;
 };

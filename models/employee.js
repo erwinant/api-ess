@@ -1,7 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Employee = sequelize.define('Employee', {
-    Id: DataTypes.NUMBER,
+    Id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true
+    },
     RowStatus: DataTypes.NUMBER,
     NRP: DataTypes.STRING,
     FullName: DataTypes.STRING,
@@ -34,8 +37,11 @@ module.exports = (sequelize, DataTypes) => {
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.DATE,
     UpdateBy: DataTypes.STRING
-  }, {});
-  Employee.associate = function(models) {
+  }, {
+      freezeTableName: true,
+      timestamps: false,
+    });
+  Employee.associate = function (models) {
     // associations can be defined here
   };
   return Employee;

@@ -1,0 +1,30 @@
+{
+  "name": "api-ess",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "erwina",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-timeout": "^1.9.0",
+    "cors": "^2.8.5",
+    "emailjs": "^2.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.5",
+    "file-saver": "^2.0.2",
+    "http": "0.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "path": "^0.12.7",
+    "pug": "^2.0.4",
+    "sequelize": "^5.17.0",
+    "tedious": "^6.3.0",
+    "web-push": "^3.3.5"
+  }
+}

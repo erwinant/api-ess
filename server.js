@@ -5,9 +5,12 @@ const http = require('http');
 const cors = require('cors');
 const app = express();
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+
 const timeout = require('connect-timeout'); //express v4
 const fileUpload = require('express-fileupload');
+
+const env = process.env.NODE_ENV || 'development';
+const config = require(__dirname + '/config/config.json')[env];
 //Cors
 app.use(cors());
 app.options('*', cors());
@@ -15,18 +18,9 @@ app.options('*', cors());
 app.set('views', 'views');
 app.set('view engine', 'pug');
 // API file for interacting with api route
-// const api_enum = require('./route/renum');
-// const api_location = require('./route/rlocation');
-// const api_project = require('./route/rproject');
-// const api_report = require('./route/rreport');
-// const api_reportphoto = require('./route/rreportphoto');
-// const api_reportprogress = require('./route/rreportprogress');
-// const api_reportprogressdetail = require('./route/rreportprogressdetail');
-// const api_rules = require('./route/rrules');
-// const api_pic = require('./route/rpic');
-// const api_users = require('./route/rusers');
-// const api_pushnotif = require('./route/rpushnotif');
-// const api_reporting = require('./route/rreportting');
+const api_account = require('./routes/raccount');
+const api_area = require('./routes/rarea');
+
 //fileupload
 app.use(fileUpload());
 // Parsers
@@ -36,20 +30,25 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // Angular DIST output folder
 app.use(express.static(path.join(__dirname, 'dist')));
 // API location route
-
+//secure the api with auth
+const auth = function (req, res, next) {
+    let uri = String(req.originalUrl);
+    if (uri.indexOf('/account/login') >= 0 || uri.indexOf('/account/register') >= 0)
+        next();
+    else {
+        var token = req.headers['x-access-token'];
+        if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
+        jwt.verify(token, config.secretKey, (err, decoded) => {
+            if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' });
+            next();
+        });
+    }
+}
+app.use(auth);
 //our route
-// app.use('/api/enum', api_enum);
-// app.use('/api/location', api_location);
-// app.use('/api/project', api_project);
-// app.use('/api/report', api_report);
-// app.use('/api/reportphoto', api_reportphoto);
-// app.use('/api/reportprogress', api_reportprogress);
-// app.use('/api/reportprogressdetail', api_reportprogressdetail);
-// app.use('/api/rules', api_rules);
-// app.use('/api/pic', api_pic);
-// app.use('/api/users', api_users);
-// app.use('/api/pushnotif', api_pushnotif);
-// app.use('/api/reporting', api_reporting);
+app.use('/api/account', api_account);
+app.use('/api/area', api_area);
+
 
 app.use(timeout('150s'));
 app.use(haltOnTimedout);

@@ -7,7 +7,8 @@
     "dialect": "mssql",
     "operatorsAliases": false,
     "timestamp":false,
-    "freezeTableName": true
+    "freezeTableName": true,
+    "secretKey":"sheilaOn7"
   },
   "test": {
     "username": "root",
@@ -17,7 +18,8 @@
     "dialect": "mysql",
     "operatorsAliases": false,
     "timestamp":false,
-    "freezeTableName": true
+    "freezeTableName": true,
+    "secretKey":"sheilaOn7"
   },
   "production": {
     "username": "root",
@@ -27,6 +29,7 @@
     "dialect": "mysql",
     "operatorsAliases": false,
     "timestamp":false,
-    "freezeTableName": true
+    "freezeTableName": true,
+    "secretKey":"sheilaOn7"
   }
 }

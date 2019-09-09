@@ -3,15 +3,16 @@ module.exports = (sequelize, DataTypes) => {
   const EmployeeAttachment = sequelize.define('EmployeeAttachment', {
     Id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
     AttachmentType: DataTypes.STRING,
     Filename: DataTypes.STRING,
     EmployeeID: DataTypes.NUMBER,
-    CreateDate: DataTypes.DATE,
+    CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
-    UpdateDate: DataTypes.DATE,
+    UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING
   }, {
       freezeTableName: true,

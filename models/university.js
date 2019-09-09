@@ -3,14 +3,15 @@ module.exports = (sequelize, DataTypes) => {
   const University = sequelize.define('University', {
     Id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
     University: DataTypes.STRING,
     Akreditasi: DataTypes.STRING,
-    CreateDate: DataTypes.DATE,
+    CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
-    UpdateDate: DataTypes.DATE,
+    UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING
   }, {
       freezeTableName: true,

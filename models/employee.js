@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Employee = sequelize.define('Employee', {
     Id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
     NRP: DataTypes.STRING,
@@ -12,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     Marriage: DataTypes.STRING,
     Religion: DataTypes.STRING,
     BirthPlace: DataTypes.STRING,
-    BirthDate: DataTypes.DATE,
+    BirthDate: DataTypes.STRING,
     BloodType: DataTypes.STRING,
     NoKtp: DataTypes.STRING,
     NoKk: DataTypes.STRING,
@@ -33,9 +34,9 @@ module.exports = (sequelize, DataTypes) => {
     ShirtSize: DataTypes.STRING,
     ShoesSize: DataTypes.STRING,
     FamilyTax: DataTypes.STRING,
-    CreateDate: DataTypes.DATE,
+    CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
-    UpdateDate: DataTypes.DATE,
+    UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING
   }, {
       freezeTableName: true,

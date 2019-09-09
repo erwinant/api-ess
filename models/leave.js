@@ -3,17 +3,18 @@ module.exports = (sequelize, DataTypes) => {
   const Leave = sequelize.define('Leave', {
     Id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
     LeaveType: DataTypes.STRING,
     LeaveBalance: DataTypes.STRING,
-    StartPeriode: DataTypes.DATE,
-    EndPeriode: DataTypes.DATE,
+    StartPeriode: DataTypes.STRING,
+    EndPeriode: DataTypes.STRING,
     EmployeeID: DataTypes.NUMBER,
-    CreateDate: DataTypes.DATE,
+    CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
-    UpdateDate: DataTypes.DATE,
+    UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING
   }, {
       freezeTableName: true,

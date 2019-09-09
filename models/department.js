@@ -3,16 +3,17 @@ module.exports = (sequelize, DataTypes) => {
   const Department = sequelize.define('Department', {
     Id: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
     Name: DataTypes.STRING,
     Initial: DataTypes.STRING,
     CostCenterCode: DataTypes.STRING,
     Location: DataTypes.STRING,
-    CreateDate: DataTypes.DATE,
+    CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
-    UpdateDate: DataTypes.DATE,
+    UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING,
     DivisionID: DataTypes.NUMBER,
   }, {

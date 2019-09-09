@@ -20,6 +20,7 @@ app.set('view engine', 'pug');
 // API file for interacting with api route
 const api_account = require('./routes/raccount');
 const api_area = require('./routes/rarea');
+const api_location = require('./routes/rlocation');
 
 //fileupload
 app.use(fileUpload());
@@ -48,6 +49,7 @@ app.use(auth);
 //our route
 app.use('/api/account', api_account);
 app.use('/api/area', api_area);
+app.use('/api/location', api_location);
 
 
 app.use(timeout('150s'));

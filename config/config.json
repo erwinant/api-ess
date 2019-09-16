@@ -6,6 +6,7 @@
     "host": "asgard",
     "dialect": "mssql",
     "operatorsAliases": false,
+    "folderImage":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
     "timestamp":false,
     "freezeTableName": true,
     "secretKey":"sheilaOn7"
@@ -16,6 +17,7 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
+    "folderImage":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
     "operatorsAliases": false,
     "timestamp":false,
     "freezeTableName": true,
@@ -27,6 +29,7 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
+    "folderImage":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
     "operatorsAliases": false,
     "timestamp":false,
     "freezeTableName": true,

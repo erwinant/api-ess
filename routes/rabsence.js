@@ -8,16 +8,15 @@ const moment = require('moment');
 const Op = require('Sequelize').Op;
 
 router.get('/', function (req, res, next) {
-    model.EmployeeAbsent.findAll({}).then(result => {
+    model.Absence.findAll({}).then(result => {
         res.json(result);
     });
 });
 router.get('/last', function (req, res, next) {
-    let absenType = req.query.type;
     let empId = req.query.empid;
-    model.EmployeeAbsent.max('Id', { where: { AbsentType: absenType, EmployeeID: empId } }).then(result => {
+    model.Absence.max('Id', { where: { EmployeeID: empId } }).then(result => {
         if (result) {
-            model.EmployeeAbsent.findAll({ where: { Id: result } }).then(maxAbsen => {
+            model.Absence.findAll({ where: { Id: result } }).then(maxAbsen => {
                 res.json(maxAbsen);
             })
         } else {
@@ -26,12 +25,25 @@ router.get('/last', function (req, res, next) {
     });
 });
 router.post('/history', function (req, res, next) {
-    model.sequelize.query("EXEC up_getHistoryAbsentLimit :Limit,:DateEnd,:EmployeeID",
-        { replacements: req.body, type: Sequelize.QueryTypes.SELECT }).then(lastHistory => {
-            if (lastHistory.length > 0) {
-                res.json(lastHistory);
-            }
-        })
+    model.Absence.findAll(
+        {
+            where: {
+                EmployeeID: req.body.EmployeeID,
+                AbsentDate: {
+                    [Op.lte]: req.body.DateEnd
+                }
+            }, limit: 8,
+            order: [['Id', 'DESC']]
+        }
+    ).then(result => {
+        res.json(result);
+    });
+    // model.sequelize.query("EXEC up_getHistoryAbsentLimit :Limit,:DateEnd,:EmployeeID",
+    //     { replacements: req.body, type: Sequelize.QueryTypes.SELECT }).then(lastHistory => {
+    //         if (lastHistory.length > 0) {
+    //             res.json(lastHistory);
+    //         }
+    //     })
 
     // model.uv_EmployeeAbsentHistory.findAll({
     //     where: {
@@ -47,21 +59,36 @@ router.post('/history', function (req, res, next) {
 });
 router.post('/cr', function (req, res, next) {
     req.body.RowStatus = 1;
-    model.EmployeeAbsent.findAll({ where: req.body }).then((result) => {
+    model.Absence.findAll({ where: req.body }).then((result) => {
         res.json(result);
     })
 });
 router.post('/', function (req, res, next) {
-    model.EmployeeAbsent.create(req.body).then((result) => {
-        res.json(result);
+    model.Absence.findAll({ where: { AbsentDate: req.body.AbsentDate, EmployeeID: req.body.EmployeeID } }).then((result) => {
+        if (result.length > 0) { //update
+            model.Absence.update(req.body, { where: { AbsentDate: req.body.AbsentDate, EmployeeID: req.body.EmployeeID } }).then((up) => {
+                res.json(up);
+            }).catch((err) => {
+                // handle error;
+                res.json(err);
+            });
+        } else { //insert
+            model.Absence.create(req.body).then((ins) => {
+                res.json(ins);
+            }).catch((err) => {
+                // handle error;
+                res.json(err);
+            });
+        }
     }).catch((err) => {
         // handle error;
         res.json(err);
     });
+
 });
 
 router.put('/', function (req, res, next) {
-    model.EmployeeAbsent.update(req.body,
+    model.Absence.update(req.body,
         { where: { Id: req.body.Id } }
     ).then((result) => {
         res.json(result);

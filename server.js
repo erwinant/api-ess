@@ -21,6 +21,7 @@ app.set('view engine', 'pug');
 const api_account = require('./routes/raccount');
 const api_area = require('./routes/rarea');
 const api_location = require('./routes/rlocation');
+const api_absent = require('./routes/rabsence');
 
 //fileupload
 app.use(fileUpload());
@@ -50,7 +51,7 @@ app.use(auth);
 app.use('/api/account', api_account);
 app.use('/api/area', api_area);
 app.use('/api/location', api_location);
-
+app.use('/api/absen', api_absent);
 
 app.use(timeout('150s'));
 app.use(haltOnTimedout);

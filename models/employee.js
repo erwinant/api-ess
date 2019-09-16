@@ -37,7 +37,11 @@ module.exports = (sequelize, DataTypes) => {
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.STRING,
-    UpdateBy: DataTypes.STRING
+    UpdateBy: DataTypes.STRING,
+    DepartmentID: DataTypes.NUMBER,
+    OrganizationLevelID: DataTypes.NUMBER,
+    Photo: DataTypes.STRING,
+    LocationID: DataTypes.NUMBER,
   }, {
       freezeTableName: true,
       timestamps: false,

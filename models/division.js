@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
     RowStatus: DataTypes.NUMBER,
     Name: DataTypes.STRING,
     Initial: DataTypes.STRING,
-    CostCenterCode: DataTypes.STRING,
     Location: DataTypes.STRING,
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,

@@ -32,13 +32,16 @@ router.post('/login', function (req, res, next) {
         model.sequelize.query("EXEC sp_login :Username,:Password",
             { replacements: req.body, type: Sequelize.QueryTypes.SELECT }).then(result => {
                 if (result.length > 0) {
-                    // create a token
-                    let token = jwt.sign({ Username: req.body.Username }, config.secretKey, {
-                        expiresIn: 31536000 // expires in 1 year
-                    });
-                    result[0].auth = true;
-                    result[0].token = token;
-                    res.json(result);
+                    model.uv_EmployeeQuickProfile.findAll({ where: { Username: req.body.Username } }).then((empQuickProfile) => {
+                        let token = jwt.sign({ Username: req.body.Username }, config.secretKey, {
+                            expiresIn: 31536000 // expires in 1 year
+                        });
+                        result[0].auth = true;
+                        result[0].token = token;
+                        result[0].quickProfile = empQuickProfile[0];
+                        res.json(result);
+                    })
+
                 } else {
                     res.json({ error: "No Content" });
                 }

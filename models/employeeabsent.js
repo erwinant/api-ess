@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
-    ClockIn: DataTypes.STRING,
-    ClockOut: DataTypes.STRING,
-    AbsenDate: DataTypes.STRING,
+    CheckTime: DataTypes.STRING,
+    AbsentType: DataTypes.STRING,
+    AbsentDate: DataTypes.STRING,
     EmployeeID: DataTypes.NUMBER,
     Long: DataTypes.NUMBER,
     Lat: DataTypes.NUMBER,
@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.STRING,
-    UpdateBy: DataTypes.STRING
+    UpdateBy: DataTypes.STRING,
+    Notes: DataTypes.STRING,
+    Status:DataTypes.NUMBER,
   }, {
       freezeTableName: true,
       timestamps: false,

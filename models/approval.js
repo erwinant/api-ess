@@ -1,16 +1,18 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const EmployeeAttachment = sequelize.define('EmployeeAttachment', {
+  const Approval = sequelize.define('Approval', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
-    AttachmentType: DataTypes.STRING,
-    Filename: DataTypes.STRING,
-    Systemname: DataTypes.STRING,
-    EmployeeID: DataTypes.NUMBER,
+    AppType: DataTypes.STRING,
+    DocID: DataTypes.NUMBER,
+    DocNumber: DataTypes.STRING,
+    DocStatus: DataTypes.STRING,
+    StepCurrent: DataTypes.NUMBER,
+    StepCount: DataTypes.NUMBER,
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.STRING,
@@ -19,12 +21,12 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
   });
-  EmployeeAttachment.associate = function (models) {
+  Approval.associate = function (models) {
     // associations can be defined here
-    EmployeeAttachment.belongsTo(models.Employee, {
-      foreignKey: 'EmployeeID',
+    Approval.hasMany(models.ApprovalDetail, {
+      foreignKey: 'ApprovalID',
       onDelete: 'CASCADE'
     });
   };
-  return EmployeeAttachment;
+  return Approval;
 };

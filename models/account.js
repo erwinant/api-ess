@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING,
     Locked: DataTypes.NUMBER,
-    LastLogin: DataTypes.STRING
+    LastLogin: DataTypes.STRING,
+    PINSalt:DataTypes.STRING,
+    PINHash:DataTypes.STRING,
   }, {
       freezeTableName: true,
       timestamps: false,

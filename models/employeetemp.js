@@ -1,13 +1,12 @@
 'use strict';
-
 module.exports = (sequelize, DataTypes) => {
-  const Employee = sequelize.define('Employee', {
+  const EmployeeTemp = sequelize.define('EmployeeTemp', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    
+    EmployeeID:DataTypes.NUMBER,
     RowStatus: DataTypes.NUMBER,
     NRP: DataTypes.STRING,
     FullName: DataTypes.STRING,
@@ -60,48 +59,12 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
   });
-  Employee.associate = function (models) {
-    Employee.hasMany(models.EmployeeEdu, {
+  EmployeeTemp.associate = function (models) {
+    // associations can be defined here
+    EmployeeTemp.belongsTo(models.Employee, {
       foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeEduTemp, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeFamily, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeFamilyTemp, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeAttachment, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeAttachmentTemp, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeTraining, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeTrainingTemp, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.hasMany(models.EmployeeTemp, {
-      foreignKey: 'EmployeeID',
-      onDelete: 'CASCADE'
-    });
-    Employee.belongsTo(models.Employee, {
-      as: 'Boss',
-      foreignKey: 'DirectReportID',
       onDelete: 'CASCADE'
     });
   };
-  return Employee;
+  return EmployeeTemp;
 };

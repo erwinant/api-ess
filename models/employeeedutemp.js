@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const EmployeeEdu = sequelize.define('EmployeeEdu', {
+  const EmployeeEduTemp = sequelize.define('EmployeeEduTemp', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -19,15 +19,15 @@ module.exports = (sequelize, DataTypes) => {
     UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING
   }, {
-      freezeTableName: true,
-      timestamps: false,
-    });
-  EmployeeEdu.associate = function (models) {
+    freezeTableName: true,
+    timestamps: false,
+  });
+  EmployeeEduTemp.associate = function (models) {
     // associations can be defined here
-    EmployeeEdu.belongsTo(models.Employee, {
+    EmployeeEduTemp.belongsTo(models.Employee, {
       foreignKey: 'EmployeeID',
       onDelete: 'CASCADE'
     });
   };
-  return EmployeeEdu;
+  return EmployeeEduTemp;
 };

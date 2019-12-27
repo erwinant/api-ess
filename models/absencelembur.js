@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Absence = sequelize.define('Absence', {
+  const AbsenceLembur = sequelize.define('AbsenceLembur', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
   });
-  Absence.associate = function (models) {
+  AbsenceLembur.associate = function (models) {
     // associations can be defined here
   };
-  return Absence;
+  return AbsenceLembur;
 };

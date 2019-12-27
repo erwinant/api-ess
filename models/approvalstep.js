@@ -1,30 +1,30 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const EmployeeTraining = sequelize.define('EmployeeTraining', {
+  const ApprovalStep = sequelize.define('ApprovalStep', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
     RowStatus: DataTypes.NUMBER,
-    Institution: DataTypes.STRING,
-    Description: DataTypes.STRING,
-    Year: DataTypes.STRING,
+    AppType: DataTypes.STRING,
+    StepNumber: DataTypes.NUMBER,
+    Email: DataTypes.STRING,
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.STRING,
     UpdateBy: DataTypes.STRING,
-    EmployeeID: DataTypes.NUMBER
+    EmployeeID:DataTypes.NUMBER,
   }, {
-      freezeTableName: true,
-      timestamps: false,
-    });
-  EmployeeTraining.associate = function (models) {
+    freezeTableName: true,
+    timestamps: false,
+  });
+  ApprovalStep.associate = function(models) {
     // associations can be defined here
-    EmployeeTraining.belongsTo(models.Employee, {
+    ApprovalStep.belongsTo(models.Employee, {
       foreignKey: 'EmployeeID',
       onDelete: 'CASCADE'
     });
   };
-  return EmployeeTraining;
+  return ApprovalStep;
 };

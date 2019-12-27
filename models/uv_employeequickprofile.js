@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const uv_EmployeeQuickProfile = sequelize.define('uv_EmployeeQuickProfile', {
+    RowStatus: DataTypes.NUMBER,
     AccountID: DataTypes.NUMBER,
     EmployeeID: DataTypes.NUMBER,
     Username: {
@@ -19,7 +20,14 @@ module.exports = (sequelize, DataTypes) => {
     Long: DataTypes.STRING,
     Lat: DataTypes.STRING,
     Radius: DataTypes.STRING,
-    LocationName: DataTypes.STRING
+    LocationName: DataTypes.STRING,
+    Gender: DataTypes.STRING,
+    ClockIn: DataTypes.STRING,
+    ClockOut: DataTypes.STRING,
+    EmailPrivate: DataTypes.STRING,
+    OrganizationLevelID: DataTypes.NUMBER,
+    DirectReportID: DataTypes.NUMBER,
+    Role: DataTypes.STRING,
   }, {
     freezeTableName: true,
     timestamps: false,

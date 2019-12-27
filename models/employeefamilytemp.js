@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const EmployeeFamily = sequelize.define('EmployeeFamily', {
+  const EmployeeFamilyTemp = sequelize.define('EmployeeFamilyTemp', {
     Id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -17,17 +17,25 @@ module.exports = (sequelize, DataTypes) => {
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.STRING,
-    UpdateBy: DataTypes.STRING
+    UpdateBy: DataTypes.STRING,
+    BirthDate:  {
+      type : DataTypes.STRING,
+      get(){
+        const moment = require('moment');
+        let BirthDate = this.getDataValue('BirthDate') ? moment(this.getDataValue('BirthDate')).format('YYYY-MM-DD'):"";
+        return BirthDate.split('T')[0];
+      },
+    }
   }, {
-      freezeTableName: true,
-      timestamps: false,
-    });
-  EmployeeFamily.associate = function (models) {
+    freezeTableName: true,
+    timestamps: false,
+  });
+  EmployeeFamilyTemp.associate = function (models) {
     // associations can be defined here
-    EmployeeFamily.belongsTo(models.Employee, {
+    EmployeeFamilyTemp.belongsTo(models.Employee, {
       foreignKey: 'EmployeeID',
       onDelete: 'CASCADE'
     });
   };
-  return EmployeeFamily;
+  return EmployeeFamilyTemp;
 };

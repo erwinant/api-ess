@@ -6,10 +6,14 @@
     "host": "asgard",
     "dialect": "mssql",
     "operatorsAliases": false,
-    "folderImage":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
+    "baseUrl":"http://localhost:4200",
+    "apiUrl":"http://localhost:3005/api/",
+    "folderImageAbsen":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
+    "folderImageProfile":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\profile\\",
     "timestamp":false,
     "freezeTableName": true,
-    "secretKey":"sheilaOn7"
+    "secretKey":"sheilaOn7",
+    "emailHC":"erwin.ant@gmail.com"
   },
   "test": {
     "username": "root",
@@ -17,11 +21,15 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "folderImage":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
+    "baseUrl":"https://stg-ess.acset.co",
+    "apiUrl":"http://localhost:3005/api/",
+    "folderImageAbsen":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
+    "folderImageProfile":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\profile\\",
     "operatorsAliases": false,
     "timestamp":false,
     "freezeTableName": true,
-    "secretKey":"sheilaOn7"
+    "secretKey":"sheilaOn7",
+    "emailHC":"erwin.ant@gmail.com"
   },
   "production": {
     "username": "root",
@@ -29,10 +37,14 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "folderImage":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
+    "baseUrl":"https://stg-ess.acset.co",
+    "apiUrl":"http://localhost:3005/api/",
+    "folderImageAbsen":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\absen\\",
+    "folderImageProfile":"C:\\Users\\erwina\\Documents\\RnD\\Project\\api-ess\\dist\\img\\profile\\",
     "operatorsAliases": false,
     "timestamp":false,
     "freezeTableName": true,
-    "secretKey":"sheilaOn7"
+    "secretKey":"sheilaOn7",
+    "emailHC":"erwin.ant@gmail.com"
   }
 }

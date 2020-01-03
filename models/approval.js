@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,
     UpdateDate: DataTypes.STRING,
-    UpdateBy: DataTypes.STRING
+    UpdateBy: DataTypes.STRING,
+    InitiatorID: DataTypes.NUMBER
   }, {
     freezeTableName: true,
     timestamps: false,
@@ -25,6 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Approval.hasMany(models.ApprovalDetail, {
       foreignKey: 'ApprovalID',
+      onDelete: 'CASCADE'
+    });
+
+    Approval.belongsTo(models.Employee, {
+      foreignKey: 'InitiatorID',
       onDelete: 'CASCADE'
     });
   };

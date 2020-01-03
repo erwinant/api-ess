@@ -7,8 +7,8 @@ const getEmployee = (id, nrp, callback) => {
         where: crit,
         raw: true
     }).then((result) => {
-    callback(result);
-})
+        callback(result);
+    })
 }
 
 const sendToAdmin = (req, callback) => {
@@ -60,13 +60,23 @@ const sendEmail = (obj, callback) => {
     if (obj) {
         var messagemail = obj;
         const nodemailer = require('nodemailer');
+        // let transporter = nodemailer.createTransport({
+        //     host: 'mail.acset.co',
+        //     port: 587,
+        //     secure: false, // true for 465, false for other ports
+        //     auth: {
+        //         user: "notification-master", // generated ethereal user
+        //         pass: "Vfr45tgB$%" // generated ethereal password
+        //     }
+        // });
         let transporter = nodemailer.createTransport({
-            host: 'mail.acset.co',
+            host: 'smtp.gmail.com',
             port: 587,
-            secure: false, // true for 465, false for other ports
+            secure: false,
+            requireTLS: true,
             auth: {
-                user: "notification-master", // generated ethereal user
-                pass: "Vfr45tgB$%" // generated ethereal password
+                user: "erwin.ant@gmail.com", // generated ethereal user
+                pass: "Ketikahujan@003" // generated ethereal password
             }
         });
 

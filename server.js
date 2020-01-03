@@ -46,7 +46,8 @@ const whiteUri = [
     "employee/temp/approve",
     "employee/temp/reject",
     "/account/login",
-    "/account/register"
+    "/account/register",
+    "/account/resetpwd",
 ]
 const auth = function (req, res, next) {
     //console.log("a");

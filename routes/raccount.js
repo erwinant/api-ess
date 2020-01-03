@@ -72,12 +72,12 @@ router.post('/resetpwd', function (req, res, next) {
                     let objEmail = {
                         Message: "<b>Permintaan reset password oleh " + obj.FullName + "</b>, <br/><br/>Mohon segera login di " + config.baseUrl + ". <br/> Login dengan menggunakan : <br/><table><tr><th>Username</th><th>Password</th></tr><tr><td>" + obj.Username + "</td><td>" + obj.Password + "</td></table>" + signature,
                         Sender: "ess-app@acset.co",
-                        Receiver: obj.EmailPrivate,
+                        Receiver: result[0].Email,
                         Subject: "[ess-app] Password Reset",
                         Cc: ""
                     }
                     commonFunction.sendEmail(objEmail, cb => {
-
+                        console.log(cb)
                     });
                     res.json(result);
                 } else {

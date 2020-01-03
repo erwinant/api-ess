@@ -34,7 +34,7 @@ router.post('/history', function (req, res, next) {
                 AbsentDate: {
                     [Op.lte]: req.body.DateEnd
                 }
-            }, limit: 8,
+            }, limit: 7,
             order: [['Id', 'DESC']]
         }
     ).then(result => {
@@ -42,7 +42,10 @@ router.post('/history', function (req, res, next) {
     });
 });
 router.post('/maintain/cr', function (req, res, next) {
-    model.uv_EmployeeAbsence.findAll({ where: req.body }).then((result) => {
+    model.uv_EmployeeAbsence.findAll({ where: req.body,
+        order: [
+            ['AbsentDate', 'DESC']
+        ] }).then((result) => {
         res.json(result);
     })
 });
@@ -247,7 +250,10 @@ router.post('/lembur/history', function (req, res, next) {
     });
 });
 router.post('/lembur/maintain/cr', function (req, res, next) {
-    model.uv_EmployeeAbsenceLembur.findAll({ where: req.body }).then((result) => {
+    model.uv_EmployeeAbsenceLembur.findAll({ where: req.body,
+        order: [
+            ['AbsentDate', 'DESC']
+        ] }).then((result) => {
         res.json(result);
     })
 });

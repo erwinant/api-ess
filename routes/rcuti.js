@@ -12,7 +12,7 @@ router.post('/cr', function (req, res, next) {
     req.body.RowStatus = 1;
     model.MasterCuti.findAll({
         where: req.body,
-        attributes: { exclude: ['CreateDate','CreateBy','UpdateDate','UpdateBy'] },
+        attributes: { exclude: ['CreateDate', 'CreateBy', 'UpdateDate', 'UpdateBy'] },
     }).then((result) => {
         res.json(result);
     })
@@ -50,9 +50,40 @@ router.post('/doc/cr', function (req, res, next) {
 });
 router.post('/doc', function (req, res, next) {
     model.Cuti.create(req.body).then((result) => {
-        let obj = result.get({plain:true});
-        let incemental = "00000000"+obj.Id.toString();
-        obj.DocNo = 'LVS-'+moment().format('YY')+incemental.slice(-4);
+        let obj = result.get({ plain: true });
+        let incemental = "00000000" + obj.Id.toString();
+        obj.DocNo = 'LVS-' + moment().format('YY') + incemental.slice(-4);
+
+        //approval
+        model.ApprovalStep.findAll({
+            where: { AppType: 'CUTI' },
+            raw: true
+        }).then((step) => {
+            model.Employee.findAll({
+                where: { NRP: obj.CreateBy },
+                raw: true
+            }).then((emp) => {
+                const moment = require('moment');
+                let myEmp = emp[0];
+                let appr = {
+                    RowStatus: 1,
+                    AppType: 'CUTI',
+                    DocID: obj.Id,
+                    DocNumber: obj.DocNo,
+                    StepCurrent: 0,
+                    StepCount: step.length,
+                    DocStatus: 'INIT',
+                    CreateDate: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    CreateBy: obj.CreateBy,
+                    InitiatorID:myEmp.Id
+                }
+                model.Approval.create(appr).then((ins) => {
+                    
+                })
+            })
+        })
+        //end approval
+
         model.Cuti.update(obj, { where: { Id: obj.Id } }).then((up) => {
             res.json(result);
         })

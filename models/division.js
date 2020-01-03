@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     });
   Division.associate = function (models) {
     // associations can be defined here
+    Division.hasMany(models.Department, {
+      foreignKey: 'DivisionID',
+      onDelete: 'CASCADE'
+    });
   };
   return Division;
 };

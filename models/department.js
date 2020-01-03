@@ -22,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     });
   Department.associate = function (models) {
     // associations can be defined here
+    Department.belongsTo(models.Division, {
+      foreignKey: 'DivisionID',
+      onDelete: 'CASCADE'
+    });
   };
   return Department;
 };

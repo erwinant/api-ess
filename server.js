@@ -32,6 +32,7 @@ const api_cuti = require('./routes/rcuti');
 const api_claim = require('./routes/rclaim');
 const api_approval = require('./routes/rapproval');
 const api_spd = require('./routes/rspd');
+const api_holiday = require('./routes/rholiday');
 //fileupload
 app.use(fileUpload());
 // Parsers
@@ -82,6 +83,7 @@ app.use('/api/organizationlevel', api_organizationlevel);
 app.use('/api/message', api_message);
 app.use('/api/approval', api_approval);
 app.use('/api/spd', api_spd);
+app.use('/api/holiday', api_holiday);
 app.use(timeout('150s'));
 app.use(haltOnTimedout);
 function haltOnTimedout(req, res, next) {

@@ -42,10 +42,12 @@ router.post('/history', function (req, res, next) {
     });
 });
 router.post('/maintain/cr', function (req, res, next) {
-    model.uv_EmployeeAbsence.findAll({ where: req.body,
+    model.uv_EmployeeAbsence.findAll({
+        where: req.body,
         order: [
             ['AbsentDate', 'DESC']
-        ] }).then((result) => {
+        ]
+    }).then((result) => {
         res.json(result);
     })
 });
@@ -55,9 +57,11 @@ router.post('/cr', function (req, res, next) {
         res.json(result);
     })
 });
+
 router.post('/cr/:page/:pagesize', function (req, res, next) {
     req.body.RowStatus = 1;
     const offset = req.params.page * req.params.pagesize;
+
     const limit = offset + pagesize;
     model.Absence.findAll({ limit, offset, where: req.body }).then((result) => {
         res.json(result);
@@ -95,7 +99,11 @@ router.post('/', function (req, res, next) {
                             })
                             res.json(up);
                         })
+                    } else {
+                        res.json(up);
                     }
+                } else {
+                    res.json(up);
                 }
             }).catch((err) => {
                 // handle error;
@@ -250,10 +258,12 @@ router.post('/lembur/history', function (req, res, next) {
     });
 });
 router.post('/lembur/maintain/cr', function (req, res, next) {
-    model.uv_EmployeeAbsenceLembur.findAll({ where: req.body,
+    model.uv_EmployeeAbsenceLembur.findAll({
+        where: req.body,
         order: [
             ['AbsentDate', 'DESC']
-        ] }).then((result) => {
+        ]
+    }).then((result) => {
         res.json(result);
     })
 });
@@ -403,6 +413,28 @@ router.post('/lembur/upload', function (req, res, next) {
             res.status(200).send({ "filename": myfile.name });
         });
     }
+});
+
+router.post('/sapreport', function (req, res, next) {
+    if (req.body) {
+        model.sequelize.query("EXEC up_sapAbsence :Awal,:Akhir",
+            { replacements: req.body, type: Sequelize.QueryTypes.SELECT }).then(result => {
+                if (result.length > 0) {
+                    res.json(result);
+                } else {
+                    res.json({ error: "No Content" });
+                }
+            })
+    } else {
+        res.json({ error: "No Content" });
+    }
+});
+
+router.post('/report', function (req, res, next) {
+    req.body.RowStatus = 1;
+    model.Absence.findAll({ where: req.body }).then((result) => {
+        res.json(result);
+    })
 });
 
 module.exports = router;

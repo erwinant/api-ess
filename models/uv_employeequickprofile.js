@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     OrganizationLevelID: DataTypes.NUMBER,
     DirectReportID: DataTypes.NUMBER,
     Role: DataTypes.STRING,
+    JoinDate:DataTypes.STRING,
+    ContractPeriode:DataTypes.STRING,
+    EmployeeStatus:DataTypes.STRING,
   }, {
     freezeTableName: true,
     timestamps: false,

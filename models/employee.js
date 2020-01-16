@@ -56,6 +56,9 @@ module.exports = (sequelize, DataTypes) => {
     AnyChange: DataTypes.STRING,
     DirectReportID: DataTypes.NUMBER,
     DivisionID: DataTypes.NUMBER,
+    JoinDate:DataTypes.STRING,
+    ContractPeriode:DataTypes.STRING,
+    EmployeeStatus:DataTypes.STRING,
   }, {
     freezeTableName: true,
     timestamps: false,

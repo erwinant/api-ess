@@ -473,6 +473,7 @@ router.post('/approvechange/:type/:nrp', function (req, res, next) {
     }).then((emp) => {
         let objEmp = emp[0];
         if (req.params.type === "fam" && objEmp.EmployeeFamilyTemps.length) {
+            
             let convertObj = JSON.parse(JSON.stringify(objEmp.EmployeeFamilyTemps));
             model.EmployeeFamily.bulkCreate(convertObj, { returning: true }).then((bulk) => {
                 if (bulk.length) {
@@ -481,9 +482,7 @@ router.post('/approvechange/:type/:nrp', function (req, res, next) {
                     })
                 }
             })
-        }
-
-        if (req.params.type === "edu" && objEmp.EmployeeEduTemps.length) {
+        }else if (req.params.type === "edu" && objEmp.EmployeeEduTemps.length) {
             let convertObj = JSON.parse(JSON.stringify(objEmp.EmployeeEduTemps));
             model.EmployeeEdu.bulkCreate(convertObj, { returning: true }).then((bulk) => {
                 if (bulk.length) {
@@ -492,8 +491,7 @@ router.post('/approvechange/:type/:nrp', function (req, res, next) {
                     })
                 }
             })
-        }
-        if (req.params.type === "trn" && objEmp.EmployeeTrainingTemps.length) {
+        }else if (req.params.type === "trn" && objEmp.EmployeeTrainingTemps.length) {
             let convertObj = JSON.parse(JSON.stringify(objEmp.EmployeeTrainingTemps));
             model.EmployeeTraining.bulkCreate(convertObj, { returning: true }).then((bulk) => {
                 if (bulk.length) {
@@ -502,6 +500,9 @@ router.post('/approvechange/:type/:nrp', function (req, res, next) {
                     })
                 }
             })
+        }
+        else{
+            res.json({ message: true });
         }
 
     })

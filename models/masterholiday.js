@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     RowStatus: DataTypes.NUMBER,
     Holidate: DataTypes.STRING,
+    CutiBersama: DataTypes.NUMBER,
     Description: DataTypes.STRING,
     CreateDate: DataTypes.STRING,
     CreateBy: DataTypes.STRING,

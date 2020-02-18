@@ -605,8 +605,8 @@ router.post('/sentmail/', function (req, res, next) {
         var messagemail = req.body;
         var email = require("emailjs");
         var server = email.server.connect({
-            user: "erwin.ant@gmail.com",
-            password: "Ketikahujan@003",
+            user: "adsdas",
+            password: "dasdasd",
             host: "smtp.gmail.com",
             ssl: true,
             tls: false

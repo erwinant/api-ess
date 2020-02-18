@@ -75,8 +75,8 @@ const sendEmail = (obj, callback) => {
             secure: false,
             requireTLS: true,
             auth: {
-                user: "erwin.ant@gmail.com", // generated ethereal user
-                pass: "Ketikahujan@003" // generated ethereal password
+                user: "xxx@adad", // generated ethereal user
+                pass: "adasd" // generated ethereal password
             }
         });
 

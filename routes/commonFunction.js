@@ -60,25 +60,25 @@ const sendEmail = (obj, callback) => {
     if (obj) {
         var messagemail = obj;
         const nodemailer = require('nodemailer');
-        // let transporter = nodemailer.createTransport({
-        //     host: 'mail.acset.co',
-        //     port: 587,
-        //     secure: false, // true for 465, false for other ports
-        //     auth: {
-        //         user: "notification-master", // generated ethereal user
-        //         pass: "Vfr45tgB$%" // generated ethereal password
-        //     }
-        // });
         let transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
+            host: 'mail.acset.co',
             port: 587,
-            secure: false,
-            requireTLS: true,
+            secure: false, // true for 465, false for other ports
             auth: {
-                user: "xxx@adad", // generated ethereal user
-                pass: "adasd" // generated ethereal password
+                user: "notification-master", // generated ethereal user
+                pass: "Vfr45tgB$%" // generated ethereal password
             }
         });
+        // let transporter = nodemailer.createTransport({
+        //     host: 'smtp.gmail.com',
+        //     port: 587,
+        //     secure: false,
+        //     requireTLS: true,
+        //     auth: {
+        //         user: "xxx@adad", // generated ethereal user
+        //         pass: "adasd" // generated ethereal password
+        //     }
+        // });
 
         // send mail with defined transport object
         transporter.sendMail({
